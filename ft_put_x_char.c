@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_put_x_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/05/16 15:18:18 by vpetit            #+#    #+#             */
+/*   Updated: 2017/09/23 13:55:33 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+void		ft_put_x_char(char c, int nbr)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	if (s)
+	if (c && nbr > 0)
 	{
-		while (s[i] != '\0')
+		while (i < nbr)
 		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
+			write(1, &c, 1);
+			i++;
 		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
 	}
-	return (NULL);
 }

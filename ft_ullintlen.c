@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_ullintlen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/08/30 17:25:07 by vpetit            #+#    #+#             */
+/*   Updated: 2017/08/30 17:25:09 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t		ft_ullintlen(unsigned long long nbr)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	if (s)
+	len = 1;
+	while (nbr && nbr != nbr % 10)
 	{
-		while (s[i] != '\0')
-		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
-		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
+		len++;
+		nbr = nbr / 10;
 	}
-	return (NULL);
+	return (len);
 }

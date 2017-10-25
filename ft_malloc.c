@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/10/24 14:02:16 by vpetit            #+#    #+#             */
+/*   Updated: 2017/10/24 14:03:12 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+void		*ft_malloc(size_t size, const char *func, const char *err)
 {
-	int	i;
+	void		*new;
 
-	i = 0;
-	if (s)
+	new = NULL;
+	if (!(new = malloc(size)))
 	{
-		while (s[i] != '\0')
-		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
-		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
+		write(2, func, ft_strlen(func));
+		ft_error(err);
 	}
-	return (NULL);
+	return (new);
 }

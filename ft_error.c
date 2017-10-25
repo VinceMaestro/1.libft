@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/10/24 14:01:29 by vpetit            #+#    #+#             */
+/*   Updated: 2017/10/25 15:15:23 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strchr(const char *s, int c)
+void	ft_error(const char *msg)
 {
-	int	i;
-
-	i = 0;
-	if (s)
-	{
-		while (s[i] != '\0')
-		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
-		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
-	}
-	return (NULL);
+	if (msg && *msg)
+		ft_putstr_fd(msg, 2);
+	exit(1);
 }

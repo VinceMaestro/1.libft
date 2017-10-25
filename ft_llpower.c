@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_llpower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/08/30 15:34:47 by vpetit            #+#    #+#             */
+/*   Updated: 2017/08/30 17:31:02 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+long long	ft_llpower(long long x, long long n)
 {
-	int	i;
+	long long	value;
 
-	i = 0;
-	if (s)
+	value = 1;
+	if (n > 0 && x > 1)
 	{
-		while (s[i] != '\0')
+		while (n)
 		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
+			value = value * x;
+			n--;
 		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
 	}
-	return (NULL);
+	return (value);
 }

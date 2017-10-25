@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_intlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/04/05 18:22:56 by vpetit            #+#    #+#             */
+/*   Updated: 2017/08/30 17:32:37 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t		ft_intlen(int nbr)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	if (s)
+	len = 1;
+	nbr < 0 ? len++ : len;
+	while (nbr && nbr != nbr % 10)
 	{
-		while (s[i] != '\0')
-		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
-		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
+		len++;
+		nbr = nbr / 10;
 	}
-	return (NULL);
+	return (len);
 }

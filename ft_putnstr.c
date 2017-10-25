@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/08/30 17:24:34 by vpetit            #+#    #+#             */
+/*   Updated: 2017/08/30 17:24:35 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putnstr(void *str, int len)
 {
-	int	i;
+	char	*buff;
+	int		i;
 
-	i = 0;
-	if (s)
+	if (str && len > 0)
 	{
-		while (s[i] != '\0')
+		buff = str;
+		i = 0;
+		while (buff[i] && i < len)
 		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
+			write(1, &(buff[i]), 1);
+			i += 1;
 		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
 	}
-	return (NULL);
 }

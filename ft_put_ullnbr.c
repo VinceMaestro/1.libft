@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_put_ullnbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 19:23:40 by vpetit            #+#    #+#             */
-/*   Updated: 2017/03/06 18:07:21 by vpetit           ###   ########.fr       */
+/*   Created: 2017/08/30 17:24:07 by vpetit            #+#    #+#             */
+/*   Updated: 2017/10/23 19:42:51 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strchr(const char *s, int c)
+int			ft_put_ullnbr(t_ull nbr)
 {
-	int	i;
+	long int	buff;
 
-	i = 0;
-	if (s)
-	{
-		while (s[i] != '\0')
-		{
-			if (s[i] == c)
-				return ((char*)&s[i]);
-			else
-				i++;
-		}
-		if (s[i] == c)
-			return ((char*)&s[i]);
-	}
-	return (NULL);
+	buff = '0';
+	(nbr % 10 != nbr) ? (ft_put_ullnbr(nbr / 10)) : buff;
+	buff = '0' + nbr % 10;
+	write(1, &buff, 1);
+	return (0);
 }

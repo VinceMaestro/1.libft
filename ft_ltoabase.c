@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_ltoabase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpetit <vpetit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 10:31:04 by vpetit            #+#    #+#             */
-/*   Updated: 2017/10/24 16:26:36 by vpetit           ###   ########.fr       */
+/*   Created: 2017/10/12 15:50:24 by vpetit            #+#    #+#             */
+/*   Updated: 2017/10/21 12:38:08 by vpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strdup(char const *s1)
+char			*ft_ltoabase(t_l nbr, const char *base)
 {
-	char	*s1_copy;
-	int		s1_len;
+	char	*str;
+	t_ul	cp_nbr;
 	int		i;
+	t_ul	base_len;
 
-	s1_len = 0;
-	s1_copy = NULL;
+	if (!nbr || !base || !*base)
+		return (ft_strdup("0"));
+	cp_nbr = (t_ul)nbr;
+	base_len = (t_ul)ft_strlen(base);
 	i = 0;
-	if (s1)
+	while (cp_nbr)
 	{
-		while (s1[s1_len] != '\0')
-			s1_len += 1;
-		s1_copy = (char*)malloc(sizeof(*s1_copy) * (s1_len + 1));
-		if (s1_copy != NULL)
-		{
-			while (i < s1_len)
-			{
-				s1_copy[i] = s1[i];
-				i += 1;
-			}
-			s1_copy[i] = '\0';
-		}
+		cp_nbr /= base_len;
+		i++;
 	}
-	return (s1_copy);
+	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	str[i] = 0;
+	cp_nbr = (t_ul)nbr;
+	while (--i >= 0)
+	{
+		str[i] = base[cp_nbr % base_len];
+		cp_nbr /= base_len;
+	}
+	return (str);
 }
